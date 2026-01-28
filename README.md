@@ -1,14 +1,114 @@
-# Shawshank Prediction 🎬  
-*Machine Learning in Production – Group Project*  
+# Shawshank Prediction - Movie Recommendation System (Kafka + ML in Production)   
 
-## Collaborators  
-- Dhruva Byrapatna  
-- Jayant Sharma  
-- Sonal Bhatia  
-- Kabir Kakkar  
-- Suraksha Sadana  
+A production-grade machine learning movie recommendation system that consumes simulated Netflix-style user activity from an Apache Kafka stream to generate personalized movie recommendations using a collaborative filtering model. The system provides low-latency, real-time inference via an HTTP API and is deployed on Amazon EC2 with containerized services. It continuously collects telemetry to monitor system health, data drift, and model quality, and supports automated retraining using newly observed user behavior. A CI/CD pipeline with blue-green deployments enables safe, zero-downtime updates. The system simulates a Netflix-scale environment with approximately 1 million users and 27,000 movies, emphasizing operability, reliability, and long-term evolution over offline model accuracy.
 
----
+<img src="dataset/architecture.png" width="65%">
+
+## System Architecture
+
+- **Kafka Stream** — Real-time user activity events  
+  ↓
+- **Data Processing & Feature Engineering**  
+  ↓
+- **Collaborative Filtering Model**  
+  ↓
+- **Recommendation Inference Service (HTTP)**  
+  ↓
+- **Telemetry & Monitoring**  
+  ↓
+- **Automated Retraining & CI/CD**  
+  ↓
+- **Blue-Green Deployment on Amazon EC2**
+
+
+ ## Key Features
+
+- **Real-time recommendations**  
+  Responds to live Kafka events with personalized movie rankings.
+
+- **Collaborative Filtering Model**  
+  Learns user–movie interactions from implicit and explicit feedback.
+
+- **Production-Ready Deployment**  
+  Hosted on Amazon EC2 with containerized services.
+
+- **Telemetry & Monitoring**  
+  Tracks availability, latency, model accuracy proxies, and data drift.
+
+- **Automated Retraining**  
+  Periodically retrains models using newly collected interaction data.
+
+- **CI/CD + Blue-Green Deployment**  
+  Enables safe, zero-downtime model and service updates using blue-green deployments and scheduled retraining (CRON).
+
+## Tech Stack
+
+1. **Machine Learning:** Collaborative Filtering (matrix factorization and implicit feedback)
+2. **Streaming:** Apache Kafka
+3. **Backend:** Python (Flask/FastAPI-based inference service)
+4. **Infrastructure:** Amazon EC2, Docker
+5. **Monitoring:** Telemetry pipelines and dashboards (Prometheus,Grafana)
+6. **CI/CD:** GitHub Actions , Hashing
+7. **Deployment Strategy:** Blue-Green deployment via load balancing across servers
+
+## API Usage
+Get Movie Recommendations
+```
+GET /recommend/<user_id>
+```
+
+Response
+```
+<movie_id_1>,<movie_id_2>,...,<movie_id_n>
+```
+Returns up to 20 movie IDs ordered from highest to lowest recommendation score, latency of 0.3-0.6ms
+
+### Model Lifecycle
+
+**Training** → **Inference** → **Telemetry** → **Monitoring** → **Retraining** → **Deployment**
+
+- **Training**: Learn user–movie representations from historical data  
+- **Inference**: Serve real-time recommendations  
+- **Telemetry**: Capture logs, latency, and feedback via Kafka  
+- **Monitoring**: Track drift, accuracy proxies, and availability  
+- **Retraining**: Update models with fresh interaction data  
+- **Deployment**: Roll out models safely with blue-green deployments
+
+
+###  Testing & Quality Assurance
+
+- Unit tests for data processing, model pipeline, and inference service  
+- Integration tests covering Kafka ingestion and API responses  
+- CI pipeline automatically runs tests on every commit  
+- Coverage reporting for infrastructure and pipeline code
+
+### 📦 Repository Structure
+
+```text
+.
+├── app/               # Flask app endpoint, CI/CD hashing
+├── data_quality/      # scripts to preprocess incoming kafka data stream, monitor drift
+├── dataset/           # Datasets stored as .csv to train models
+├── scheduler/         # automatic model retraining config
+├── scripts/           # Model training, telemetry, monitoring and kafka scripts
+├── tests/             # CI tests for data and model quality
+└── nginx.conf         # Blue green deployment for zero downtime
+└── docker-compose.yml # containerization setup
+```
+
+### Goals & Focus
+
+This project emphasizes:
+
+- **Operating machine learning systems in production**, beyond offline experimentation  
+- **Reliability and availability over perfect accuracy**  
+- **Continuous monitoring, retraining, and safe deployment practices**  
+- **Managing feedback loops and evolving data distributions**
+
+
+### Notes
+
+This repository was built as part of a Machine Learning in Production course are Carnegie Mellon University and reflects real-world challenges encountered when deploying ML systems at scale. Collaborators: Jayant Sharma, Dhruva Byrapatna, Suraksha Sadana, Kabir Kakkar and Sonal Bhatia. 
 
 ##  Getting Started 
 
@@ -18,20 +118,20 @@ git clone https://github.com/<your-org>/shawshank-prediction-mlip-project.git
 cd shawshank-prediction-mlip-project
 ```
 
-### 3. Create a Conda Environment  
+### 2. Create a Conda Environment  
 ```bash
 conda create -n shawshank-prediction python=3.10 -y
 conda activate shawshank-prediction
 
 ```
-### 2. Install Requirements
+### 3. Install Requirements
 ```bash
 pip install -r requirements.txt
 ```
 
 ## Training Models
 
-### 1. Train SVD
+### 1. Train SVD Model 
 ```bash
 python scripts/models/train_svd.py
 ```
@@ -76,7 +176,7 @@ GET http://localhost:8082/recommend/<userid>
 Example:
 123,456,789,101,112
 
-## Automated Updates (Milestone 3)
+## Automated Updates and CI/CD Deployment:
 
 Our retraining/rollout workflow is driven by `scripts/automated_retraining.py`, which can:
 - optionally pull the latest ratings from Kafka (`--pull-latest`)
