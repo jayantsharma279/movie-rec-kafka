@@ -1,0 +1,13 @@
+name: scheduler_env
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pandas
+  - numpy<2
+  - scikit-learn
+  - pip
+  - pip:
+    - scikit-surprise
+    - kafka-python
+    - joblib

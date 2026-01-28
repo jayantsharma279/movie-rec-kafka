@@ -1,0 +1,10 @@
+[Unit]
+Description=Run telemetry hit-rate rollup hourly (persistent)
+
+[Timer]
+OnCalendar=hourly
+Persistent=true
+Unit=telemetry-hitrate.service
+
+[Install]
+WantedBy=timers.target

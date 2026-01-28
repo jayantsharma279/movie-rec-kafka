@@ -1,0 +1,10 @@
+[Unit]
+Description=Run telemetry t-test rollup hourly (persistent)
+
+[Timer]
+OnCalendar=hourly
+Persistent=true
+Unit=telemetry-ttest.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,21 @@
+[Unit]
+Description=Recsys Kafka watch consumer (minute 0/1)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=team17
+Group=team17
+WorkingDirectory=/home/team17/rec-sys/shawshank-prediction-mlip-project
+EnvironmentFile=/etc/recsys/env
+Environment="KAFKA_BROKERS=broker1:9092,broker2:9092"
+Environment="KAFKA_TOPIC_LOGS=server-logs"
+ExecStart=/home/team17/rec-sys/venv/bin/python scripts/telemetry/consumers/watch_start_consumer.py
+Restart=always
+RestartSec=3
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target

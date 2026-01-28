@@ -1,0 +1,4 @@
+0 0 */2 * * root /run_training.sh >> /var/log/cron.log 2>&1
+
+
+

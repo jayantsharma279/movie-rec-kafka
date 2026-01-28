@@ -1,0 +1,24 @@
+[Unit]
+Description=SSH tunnel to Kafka (localhost:9092 -> 128.2.220.241:9092)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=team17
+Group=team17
+Environment=HOME=/home/team17
+WorkingDirectory=/home/team17
+ExecStart=/usr/bin/ssh -N -L 9092:localhost:9092 tunnel@128.2.220.241 \
+  -i /home/team17/.ssh/tunnel_kafka \
+  -o ExitOnForwardFailure=yes \
+  -o StrictHostKeyChecking=accept-new \
+  -o UserKnownHostsFile=/home/team17/.ssh/known_hosts \
+  -o ServerAliveInterval=30 -o ServerAliveCountMax=3
+Restart=always
+RestartSec=3
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target

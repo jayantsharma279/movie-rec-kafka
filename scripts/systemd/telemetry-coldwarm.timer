@@ -1,0 +1,10 @@
+[Unit]
+Description=Run telemetry cold/warm rollup hourly (persistent)
+
+[Timer]
+OnCalendar=hourly
+Persistent=true
+RandomizedDelaySec=60
+
+[Install]
+WantedBy=timers.target

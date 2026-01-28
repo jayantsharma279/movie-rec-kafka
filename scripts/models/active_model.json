@@ -1,0 +1,19 @@
+{
+  "model_version": "svd_model_20251116_033936",
+  "model_artifact": "scripts/models/svd_model_20251116_033936.pkl",
+  "fallback_artifact": "scripts/models/popular_top20_20251116_033936.pkl",
+  "trained_on": "20251116_033936",
+  "pipeline_git_sha": "f15324da4b7a9b094e3bf3d571bbea1647be43e7",
+  "data": {
+    "path": "dataset/movie_ratings.csv",
+    "rows": 7340,
+    "size_bytes": 395457,
+    "modified_at": "2025-11-14T00:09:27+00:00",
+    "version_id": "movie_ratings.csv@1763078967"
+  },
+  "data_source": "static",
+  "note": "smoke-test",
+  "active_model_path": "scripts/models/svd_model.pkl",
+  "active_popular_path": "scripts/models/popular_top20.pkl",
+  "published_at": "2025-11-16T08:39:36+00:00"
+}

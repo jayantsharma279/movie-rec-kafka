@@ -1,0 +1,18 @@
+[Unit]
+Description=Recsys telemetry t-test - 30m analysis
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=team17
+Group=team17
+WorkingDirectory=/home/team17/rec-sys/shawshank-prediction-mlip-project
+ExecStart=/home/team17/rec-sys/venv/bin/python scripts/telemetry/compute_ttest.py
+ExecStartPost=/home/team17/rec-sys/shawshank-prediction-mlip-project/scripts/systemd/monitoring/export_rollups_to_textfile.sh
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target

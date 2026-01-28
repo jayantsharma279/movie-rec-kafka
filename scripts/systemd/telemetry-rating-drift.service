@@ -1,0 +1,20 @@
+[Unit]
+Description=Recsys telemetry rollup - rating drift (last 1h window)
+After=network.target
+
+[Service]
+Type=oneshot
+User=team17
+WorkingDirectory=/home/team17/rec-sys/shawshank-prediction-mlip-project
+
+# Where logs live
+Environment=RECSYS_LOG_DIR=/var/log/recsys
+
+# Compute the drift (1h window), then rebuild textfile for node_exporter
+ExecStart=/home/team17/rec-sys/venv/bin/python scripts/telemetry/compute_rating_drift.py
+ExecStartPost=/home/team17/rec-sys/shawshank-prediction-mlip-project/scripts/systemd/monitoring/export_rollups_to_textfile.sh
+
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=multi-user.target

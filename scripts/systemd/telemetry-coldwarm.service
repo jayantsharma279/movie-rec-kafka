@@ -1,0 +1,28 @@
+[Unit]
+Description=Recsys telemetry rollup - cold/warm share
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=team17
+Group=team17
+# Use the project venv python to run the job in-place from repo
+ExecStart=/home/team17/rec-sys/venv/bin/python /home/team17/rec-sys/shawshank-prediction-mlip-project/scripts/telemetry/compute_cold_warm.py
+ExecStartPost=/home/team17/rec-sys/shawshank-prediction-mlip-project/scripts/systemd/monitoring/export_rollups_to_textfile.sh
+# Keep environment minimal; add if you need proxies etc.
+WorkingDirectory=/home/team17/rec-sys/shawshank-prediction-mlip-project
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+
+# Fail fast, but don't spam logs
+Restart=no
+# Hardening (optional)
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=full
+#ProtectHome=yes
+
+[Install]
+WantedBy=multi-user.target

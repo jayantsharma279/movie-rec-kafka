@@ -1,0 +1,100 @@
+[
+  {
+    "model_version": "svd_model_20251110_033038.pkl",
+    "trained_on": "20251110_033038",
+    "data_file": "movie_ratings.csv"
+  },
+  {
+    "model_version": "svd_model_20251110_033152.pkl",
+    "trained_on": "20251110_033152",
+    "data_file": "movie_ratings.csv"
+  },
+  {
+    "model_version": "svd_model_20251110_033217.pkl",
+    "trained_on": "20251110_033217",
+    "data_file": "movie_ratings.csv"
+  },
+  {
+    "model_version": "svd_model_20251112_012731.pkl",
+    "trained_on": "20251112_012731",
+    "data_file": "new_dataset.csv"
+  },
+  {
+    "model_version": "svd_model_20251113_230419",
+    "model_artifact": "scripts/models/svd_model_20251113_230419.pkl",
+    "fallback_artifact": "scripts/models/popular_top20_20251113_230419.pkl",
+    "trained_on": "20251113_230419",
+    "pipeline_git_sha": "f57ae34d1d73174976cf0c7518d965c92b1498ab",
+    "data": {
+      "path": "dataset/movie_ratings.csv",
+      "rows": 7340,
+      "sha256": "918b2056a1164b896787bc1c9a25bf026d1db505918c804620a1b5dd0ae39aad"
+    },
+    "data_source": "static",
+    "note": "smoke-test"
+  },
+  {
+    "model_version": "svd_model_20251114_000518",
+    "model_artifact": "scripts/models/svd_model_20251114_000518.pkl",
+    "fallback_artifact": "scripts/models/popular_top20_20251114_000518.pkl",
+    "trained_on": "20251114_000518",
+    "pipeline_git_sha": "f57ae34d1d73174976cf0c7518d965c92b1498ab",
+    "data": {
+      "path": "dataset/movie_ratings.csv",
+      "rows": 7340,
+      "size_bytes": 395457,
+      "modified_at": "2025-11-14T00:09:27+00:00",
+      "version_id": "movie_ratings.csv@1763078967"
+    },
+    "data_source": "static",
+    "note": "smoke-test"
+  },
+  {
+    "model_version": "svd_model_20251114_002316",
+    "model_artifact": "scripts/models/svd_model_20251114_002316.pkl",
+    "fallback_artifact": "scripts/models/popular_top20_20251114_002316.pkl",
+    "trained_on": "20251114_002316",
+    "pipeline_git_sha": "f57ae34d1d73174976cf0c7518d965c92b1498ab",
+    "data": {
+      "path": "dataset/movie_ratings.csv",
+      "rows": 7340,
+      "size_bytes": 395457,
+      "modified_at": "2025-11-14T00:09:27+00:00",
+      "version_id": "movie_ratings.csv@1763078967"
+    },
+    "data_source": "static",
+    "note": "test-auto-update"
+  },
+  {
+    "model_version": "svd_model_20251114_002907",
+    "model_artifact": "scripts/models/svd_model_20251114_002907.pkl",
+    "fallback_artifact": "scripts/models/popular_top20_20251114_002907.pkl",
+    "trained_on": "20251114_002907",
+    "pipeline_git_sha": "f57ae34d1d73174976cf0c7518d965c92b1498ab",
+    "data": {
+      "path": "dataset/movie_ratings.csv",
+      "rows": 7340,
+      "size_bytes": 395457,
+      "modified_at": "2025-11-14T00:09:27+00:00",
+      "version_id": "movie_ratings.csv@1763078967"
+    },
+    "data_source": "static",
+    "note": "retrain-test-2"
+  },
+  {
+    "model_version": "svd_model_20251116_033936",
+    "model_artifact": "scripts/models/svd_model_20251116_033936.pkl",
+    "fallback_artifact": "scripts/models/popular_top20_20251116_033936.pkl",
+    "trained_on": "20251116_033936",
+    "pipeline_git_sha": "f15324da4b7a9b094e3bf3d571bbea1647be43e7",
+    "data": {
+      "path": "dataset/movie_ratings.csv",
+      "rows": 7340,
+      "size_bytes": 395457,
+      "modified_at": "2025-11-14T00:09:27+00:00",
+      "version_id": "movie_ratings.csv@1763078967"
+    },
+    "data_source": "static",
+    "note": "smoke-test"
+  }
+]

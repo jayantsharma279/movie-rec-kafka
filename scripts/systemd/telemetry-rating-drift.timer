@@ -1,0 +1,12 @@
+[Unit]
+Description=Recsys telemetry rollup - rating drift (every 30 minutes)
+
+[Timer]
+OnCalendar=*-*-* *:00:00
+OnCalendar=*-*-* *:30:00
+Persistent=true
+Unit=telemetry-rating-drift.service
+
+
+[Install]
+WantedBy=timers.target
